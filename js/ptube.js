@@ -1,3 +1,4 @@
+
 // loading api data
 const loadcontant = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/videos/categories');
@@ -33,7 +34,7 @@ const catagory = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     const data = await res.json()
     let video_details = data.data;
-    console.log(video_details)
+    // console.log(video_details)
 
     card(video_details);
 
@@ -46,23 +47,32 @@ const card = (video_details) => {
     const phTube_video_card = document.getElementById('phTube-video');
     phTube_video_card.textContent = '';
 
-    // console.log(video_details.length);
+    // console.log(video_details);
 
-    // phtube card which is not empty
+
     if (video_details.length !== 0) {
         video_details.forEach(element => {
+
+            sort(element.others.views);
             //convart time
-            const { hour, min } = convartTime(element.others.posted_date)
-            console.log(`${hour} hour: ${min}min`)
-            console.log(element)
+            let { hour, min } = convartTime(element.others.posted_date)
+            // console.log(`${hour} hour: ${min}min`)
+            // if (hour > 60) {
+            //     hour = 0;
+            // }
+            // console.log(element)
             // console.log(element.authors.profile_picture)
             // if (element !="") {
             // phTube-video card
+            // ${hour ? `${hour} hrs`:""}
             const div = document.createElement('div');
             div.classList = "card card-compact bg-base-100 shadow-xl mt-10";
             div.innerHTML = `
      <figure><img src="${element.thumbnail}" alt="Shoes" class="h-[200px]" /></figure>
-     <p>20 hour 10 min<p>
+     <div class="timeSection">
+     ${element.others.posted_date ? `<p id="convartTime">${hour} hrs ${min} min ago <p>` : " "} 
+     </div>
+    
      <div class="card-body flex flex-row">
        <div class="w-[20%]">
        <img src=${element.authors[0].profile_picture}" id="authors-img"/>
@@ -97,15 +107,35 @@ const card = (video_details) => {
 
 
 }
+// let data=[];
+//sort by view
+// const sortByView = (element) => {
+    
+//     console.log(element)
+   
+
+
+// }
 //convart seconds to hour and minuts
 
 const convartTime = (seconds) => {
+
     const hour = Math.floor(seconds / 3600);
-    const min = (Math.floor(seconds%3600)/ 60).toFixed(2);
+    const min = (Math.floor(seconds % 3600) / 60).toFixed(0);
     // min.toFixed(2)
- 
-    return {hour,min}
+
+    return { hour, min }
 
 
 }
 loadcontant()
+// sortByView2(20)
+
+const sort=(id)=>{
+      console.log(id)
+}
+
+
+let sortByView2=document.getElementById("sortByView").addEventListener('click',()=>{
+    sort()
+})

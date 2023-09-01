@@ -1,0 +1,32 @@
+#active-category-button:focus {
+    background: red;
+    color: white;
+}
+
+img#authors-img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+p#convartTime {
+    position: relative;
+    margin-top: -37px;
+    display: flex;
+    padding: 0px 15px;
+    background: #000000bf;
+    color: white;
+    width: 75%;
+    border-radius: 6px;
+    font-size: 15px;
+    justify-content: center;
+
+}
+
+.timeSection {
+    display: inline-block;
+    display: flex;
+    justify-content: end;
+    padding: 0px 6px;
+    align-items: center;
+}
