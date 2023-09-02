@@ -20,8 +20,6 @@ const showcategory = (data) => {
         div.innerHTML = `
             <button onclick="catagory('${catData.category_id}')" class="btn btn-red" id="active-category-button">${catData.category}</button
         `
-
-
         // console.log(catData.category)
         catagorySection.appendChild(div)
     });
@@ -30,14 +28,13 @@ const showcategory = (data) => {
 
 // category contant
 const catagory = async (id) => {
-    // console.log("this is all", id)
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     const data = await res.json()
     let video_details = data.data;
     // console.log(video_details)
 
     card(video_details);
-
+    // sort2(video_details)
 }
 
 //category card
@@ -47,24 +44,13 @@ const card = (video_details) => {
     const phTube_video_card = document.getElementById('phTube-video');
     phTube_video_card.textContent = '';
 
-    // console.log(video_details);
-
 
     if (video_details.length !== 0) {
         video_details.forEach(element => {
-
-            sort(element.others.views);
+           
             //convart time
             let { hour, min } = convartTime(element.others.posted_date)
-            // console.log(`${hour} hour: ${min}min`)
-            // if (hour > 60) {
-            //     hour = 0;
-            // }
-            // console.log(element)
-            // console.log(element.authors.profile_picture)
-            // if (element !="") {
-            // phTube-video card
-            // ${hour ? `${hour} hrs`:""}
+
             const div = document.createElement('div');
             div.classList = "card card-compact bg-base-100 shadow-xl mt-10";
             div.innerHTML = `
@@ -88,7 +74,7 @@ const card = (video_details) => {
        </div>
      </div>
      `
-            // }
+
 
             phTube_video_card.appendChild(div)
         });
@@ -107,16 +93,6 @@ const card = (video_details) => {
 
 
 }
-// let data=[];
-//sort by view
-// const sortByView = (element) => {
-    
-//     console.log(element)
-   
-
-
-// }
-//convart seconds to hour and minuts
 
 const convartTime = (seconds) => {
 
@@ -129,13 +105,5 @@ const convartTime = (seconds) => {
 
 }
 loadcontant()
-// sortByView2(20)
-
-const sort=(id)=>{
-      console.log(id)
-}
 
 
-let sortByView2=document.getElementById("sortByView").addEventListener('click',()=>{
-    sort()
-})
