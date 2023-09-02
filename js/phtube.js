@@ -1,4 +1,3 @@
-
 // loading api data
 const loadcontant = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/videos/categories');
@@ -25,6 +24,8 @@ const showcategory = (data) => {
     });
 
 }
+// global variable  
+let sortArr = [];
 
 // category contant
 const catagory = async (id) => {
@@ -34,7 +35,9 @@ const catagory = async (id) => {
     // console.log(video_details)
 
     card(video_details);
-    // sort2(video_details)
+      sortArr=video_details;
+    // video_details.push(sortArr);
+
 }
 
 //category card
@@ -47,7 +50,9 @@ const card = (video_details) => {
 
     if (video_details.length !== 0) {
         video_details.forEach(element => {
-           
+            // sortArr.push(element);
+            // sortArr=element
+            // console.log(element.others.views)
             //convart time
             let { hour, min } = convartTime(element.others.posted_date)
 
@@ -94,6 +99,8 @@ const card = (video_details) => {
 
 }
 
+
+
 const convartTime = (seconds) => {
 
     const hour = Math.floor(seconds / 3600);
@@ -104,6 +111,22 @@ const convartTime = (seconds) => {
 
 
 }
+
+ function sortByView(){
+    sortArr.sort((a, b)=> {
+            const viewsA = parseFloat(a.others.views.replace('K', ''));
+            const viewsB = parseFloat(b.others.views.replace('K', ''));
+          
+            return viewsA - viewsB;
+          }
+
+
+    )
+    card(sortArr)
+    console.log(sortArr);
+
+}
+
 loadcontant()
 
 
