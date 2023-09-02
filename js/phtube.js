@@ -10,9 +10,10 @@ const loadcontant = async () => {
 const showcategory = (data) => {
     // console.log(data)
     const catagorySection = document.getElementById('catagory-button')
+    // console.log(data)
     data.forEach(catData => {
-        const div = document.createElement('div');
         catagory(1000)
+        const div = document.createElement('div');
         // div.classList.add('div')
         div.classList.add('mt-4')
 
@@ -54,6 +55,7 @@ const card = (video_details) => {
             // sortArr=element
             // console.log(element.others.views)
             //convart time
+            // console.log(element)
             let { hour, min } = convartTime(element.others.posted_date)
 
             const div = document.createElement('div');
@@ -75,7 +77,7 @@ const card = (video_details) => {
     ${element.authors[0].profile_name}
     ${element.authors[0].verified ? '<img src="./image/verified-icon.png"  class="w-[20px]"/>' : ''}
     </p>
-       <p>${element.others.views}</p>
+       <p>${element.others.views} views</p>
        </div>
      </div>
      `
@@ -117,7 +119,7 @@ const convartTime = (seconds) => {
             const viewsA = parseFloat(a.others.views.replace('K', ''));
             const viewsB = parseFloat(b.others.views.replace('K', ''));
           
-            return viewsA - viewsB;
+            return viewsB - viewsA;
           }
 
 
