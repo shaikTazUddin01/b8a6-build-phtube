@@ -51,9 +51,6 @@ const card = (video_details) => {
 
     if (video_details.length !== 0) {
         video_details.forEach(element => {
-            // sortArr.push(element);
-            // sortArr=element
-            // console.log(element.others.views)
             //convart time
             // console.log(element)
             let { hour, min } = convartTime(element.others.posted_date)
@@ -125,7 +122,7 @@ const convartTime = (seconds) => {
 
     )
     card(sortArr)
-    console.log(sortArr);
+    // console.log(sortArr);
 
 }
 
